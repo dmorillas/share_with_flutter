@@ -49,9 +49,36 @@ class _MyAppState extends State<MyApp> {
                 ),
               ),
               RaisedButton(
-                onPressed: onShareLinkOnFacebook,
+                onPressed: onShareMessageOnTwitter,
                 child: Text(
-                  "Share on Twitter",
+                  "Share message on Twitter",
+                  style: TextStyle(
+                    fontSize: 16.0,
+                  ),
+                ),
+              ),
+              RaisedButton(
+                onPressed: onShareLinkOnTwitter,
+                child: Text(
+                  "Share link on Twitter",
+                  style: TextStyle(
+                    fontSize: 16.0,
+                  ),
+                ),
+              ),
+              RaisedButton(
+                onPressed: onSharePictureOnTwitter,
+                child: Text(
+                  "Share image on Twitter",
+                  style: TextStyle(
+                    fontSize: 16.0,
+                  ),
+                ),
+              ),
+              RaisedButton(
+                onPressed: onShareOnTwitter,
+                child: Text(
+                  "Share All on Twitter",
                   style: TextStyle(
                     fontSize: 16.0,
                   ),
@@ -61,6 +88,46 @@ class _MyAppState extends State<MyApp> {
           ),
         ),
       ),
+    );
+  }
+
+  void onShareMessageOnTwitter() async {
+    await ShareWithFlutter.shareOnTwitter(
+        (String status, String message) async {
+          print("Result when sharing message on Twitter: $status");
+        },
+        message: "This is a message"
+    );
+  }
+
+  void onShareLinkOnTwitter() async {
+    await ShareWithFlutter.shareOnTwitter(
+        (String status, String message) async {
+          print("Result when sharing link on Twitter: $status");
+        },
+        link: "http://flutter.io"
+    );
+  }
+
+  void onSharePictureOnTwitter() async {
+    String imagePath = await getTempImagePath();
+    await ShareWithFlutter.shareOnTwitter(
+        (String status, String message) async {
+          print("Result when sharing picture on Twitter: $status");
+        },
+        imagePath: imagePath
+    );
+  }
+
+  void onShareOnTwitter() async {
+    String imagePath = await getTempImagePath();
+    await ShareWithFlutter.shareOnTwitter(
+        (String status, String message) async {
+          print("Result when sharing Twitter: $status");
+        },
+        message: "This is a message",
+        link: "flutter.io",
+        imagePath: imagePath
     );
   }
 
