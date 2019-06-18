@@ -33,6 +33,30 @@ Done!
 
 ### iOS integration
 
+- Open your **/ios/Runner/Info.plist** file and add the following lines:
+```xml
+    <key>CFBundleURLTypes</key>
+    <array>
+      <dict>
+        <key>CFBundleURLSchemes</key>
+        <array>
+          <string>fb{FB_APP_ID}</string>
+        </array>
+      </dict>
+    </array>
+    <key>FacebookAppID</key>
+    <string>{FB_APP_ID}</string>
+    <key>FacebookDisplayName</key>
+    <string>{YOUR_APP_NAME}</string>
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+      <string>fbapi</string>
+      <string>fb-messenger-share-api</string>
+      <string>fbauth2</string>
+      <string>fbshareextension</string>
+    </array>
+```
+
 Done!
 
 ### Usage
